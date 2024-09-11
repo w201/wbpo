@@ -21,3 +21,8 @@ dependencyResolutionManagement {
 
 rootProject.name = "WBPO"
 include(":app")
+include(":feature:movies")
+include(":feature:settings")
+include(":feature:info")
+include(":network")
+include(":core")

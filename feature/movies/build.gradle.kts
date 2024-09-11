@@ -1,28 +1,20 @@
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.hilt)
-    alias(libs.plugins.kapt)
-    alias(libs.plugins.serialization)
 }
 
 android {
-    namespace = "one.codium.wbpo"
+    namespace = "one.codium.wbpo.feature.movies"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "one.codium.wbpo"
         minSdk = 24
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary = true
-        }
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -44,17 +36,11 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
     }
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-    }
 }
 
 dependencies {
-
-    implementation(project(":feature:movies"))
     implementation(project(":network"))
+    implementation(project(":core"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -63,31 +49,20 @@ dependencies {
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.androidx.ui.tooling)
     implementation(libs.androidx.material3)
 
-    implementation(libs.kotlin.serialization)
-
-
-    implementation(libs.room)
-    annotationProcessor(libs.room.annotation)
-    ksp(libs.room.annotation)
+    implementation(libs.paging)
+    implementation(libs.paging.compose)
 
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
-
-    implementation(libs.navigation)
     implementation(libs.androidx.hilt.navigation.compose)
 
-    implementation(libs.mapStruct)
-    kapt(libs.mapStruct.processor)
-
-    implementation(libs.retrofit)
+    implementation(libs.coil)
+    implementation(libs.coil.compose)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
 }
