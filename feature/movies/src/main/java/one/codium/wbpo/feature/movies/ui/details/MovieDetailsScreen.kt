@@ -23,6 +23,7 @@ import one.codium.wbpo.network.entity.MovieDetails
 
 @Composable
 fun MovieDetailsScreen(
+    movieId: Int,
     viewModel: MovieDetailViewModel = hiltViewModel(),
     actions: (List<ItemMenu>) -> Unit
 ) {
