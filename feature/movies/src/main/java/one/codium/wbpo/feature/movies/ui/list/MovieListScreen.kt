@@ -100,10 +100,8 @@ fun MovieItem(movie: Movie, onMovieClick: (Movie) -> Unit, onFavoriteClick: (Mov
                 overflow = TextOverflow.Ellipsis
             )
         }
-
     }
 }
-
 
 @Composable
 @Preview

@@ -21,13 +21,11 @@ class MovieNetworkDataSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Movie> {
         val page = params.key ?: 1
         return try {
-            Log.v("w201", "page: $page")
             val response = api.getPopularMovies(page)
             val body = response.body()
             if (response.isSuccessful && body != null) {
                 val nextKey = if(body.results.isEmpty()) null else page+1
                 val prevKey = if (page == 1) null else page - 1
-                Log.v("w201", "nextKey: $nextKey, prevKey: $prevKey")
                 LoadResult.Page(MovieMapping.instance.getMovies(body.results), prevKey, nextKey)
             } else {
                 LoadResult.Error(Throwable(response.message()))

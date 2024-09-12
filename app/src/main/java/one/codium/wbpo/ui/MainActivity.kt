@@ -42,9 +42,9 @@ class MainActivity : ComponentActivity() {
                 mutableStateOf(viewModel.uiState.value.themeMode)
             }
             val isDarkMode = (themeMode.value == ThemeMode.DARK) || isSystemInDarkTheme()
+
             WBPOTheme(isDarkMode) {
                 val navController = rememberNavController()
-
 
                 var canPop by remember {
                     mutableStateOf(false)

@@ -5,7 +5,7 @@ import androidx.core.content.edit
 import com.google.gson.Gson
 import javax.inject.Inject
 
-class FavDSImpl @Inject constructor(val prefs: SharedPreferences) : FavDS {
+class FavDSImpl @Inject constructor(private val prefs: SharedPreferences) : FavDS {
     private val favKey = "favKey"
 
     private val favCache = mutableSetOf<Int>()
@@ -41,4 +41,5 @@ class FavDSImpl @Inject constructor(val prefs: SharedPreferences) : FavDS {
             putString(favKey, Gson().toJson(keys))
         }
     }
+
 }

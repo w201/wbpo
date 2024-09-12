@@ -28,16 +28,19 @@ fun MovieNavigation(
                 navController.navigate(MovieDetailsRoute(id))
             })
         }
+
         composable<MovieDetailsRoute> { backStackEntry ->
             val movieDetailsRoute: MovieDetailsRoute = backStackEntry.toRoute()
             MovieDetailsScreen(movieDetailsRoute.id, actions = actionMenu)
         }
+
         composable<SettingsRoute> {
             SettingsScreen { onThemeSelected(it) }
-
         }
+
         composable<InfoRoute> {
             InfoScreen()
         }
     }
+
 }

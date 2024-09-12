@@ -9,14 +9,13 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
-
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
     @Provides
     @Singleton
-    fun getPrefs(@ApplicationContext context: Context): SharedPreferences {
-        return context.getSharedPreferences("wbpo", Context.MODE_PRIVATE)
-    }
+    fun getPrefs(@ApplicationContext context: Context): SharedPreferences =
+        context.getSharedPreferences("wbpo", Context.MODE_PRIVATE)
+
 }

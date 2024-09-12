@@ -9,7 +9,10 @@ import one.codium.wbpo.network.dto.movie_details.MovieDetailsMapping
 import one.codium.wbpo.network.entity.MovieDetails
 import retrofit2.Response
 
-class MovieRepoImpl(private val movieAPI: MovieAPI, private val context: Context) : MovieRepo {
+class MovieRepoImpl(
+    private val movieAPI: MovieAPI,
+    private val context: Context
+) : MovieRepo {
 
    private var movieDS: MovieNetworkDataSource? = null
 
@@ -48,6 +51,5 @@ class MovieRepoImpl(private val movieAPI: MovieAPI, private val context: Context
             NetworkResult.Error(e)
         }
     }
-
 
 }

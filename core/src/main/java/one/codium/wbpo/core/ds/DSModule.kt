@@ -11,7 +11,6 @@ import one.codium.wbpo.core.ds.settings.SettingsDataSource
 import one.codium.wbpo.core.ds.settings.SettingsDataSourceImpl
 import javax.inject.Singleton
 
-
 @Module
 @InstallIn(SingletonComponent::class)
 object DSModule {
@@ -27,4 +26,5 @@ object DSModule {
     fun getSettingsDS(prefs: SharedPreferences): SettingsDataSource {
         return SettingsDataSourceImpl(prefs)
     }
+
 }

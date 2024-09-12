@@ -16,4 +16,5 @@ class SettingsRepoImpl @Inject constructor(
     override fun getThemeMode(): ThemeMode {
         return ThemeMode.valueOf(settingsDataSource.getValue(themeKey) ?: ThemeMode.SYSTEM.name)
     }
+
 }
