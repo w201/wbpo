@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="info.model">Model: %s</string>
+    <string name="info.manufacturer">Manufacturer: %s</string>
+    <string name="info.brand">Brand: %s</string>
+    <string name="info.board">Board: %s</string>
+    <string name="info.version">Version: %s</string>
+    <string name="info.copyright">Design &amp; Develop by %s in %d</string>
+
+</resources>

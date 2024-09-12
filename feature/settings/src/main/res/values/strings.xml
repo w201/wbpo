@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings.lightMode">Light</string>
+    <string name="settings.darkMode">Dark</string>
+    <string name="settings.systemMode">System</string>
+</resources>

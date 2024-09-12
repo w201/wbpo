@@ -54,7 +54,10 @@ android {
 dependencies {
 
     implementation(project(":feature:movies"))
+    implementation(project(":feature:settings"))
+    implementation(project(":feature:info"))
     implementation(project(":network"))
+    implementation(project(":core"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

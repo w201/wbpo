@@ -1,4 +1,4 @@
-package one.codium.wbpo.navigation
+package one.codium.wbpo.navigation.route
 
 import kotlinx.serialization.Serializable
 

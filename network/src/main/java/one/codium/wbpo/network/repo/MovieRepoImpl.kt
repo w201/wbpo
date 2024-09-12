@@ -11,10 +11,23 @@ import retrofit2.Response
 
 class MovieRepoImpl(private val movieAPI: MovieAPI, private val context: Context) : MovieRepo {
 
+   private var movieDS: MovieNetworkDataSource? = null
+
+    override fun getPopularList() = Pager(
+        PagingConfig(20)
+    ) {
+        movieDS = MovieNetworkDataSource(movieAPI)
+        movieDS!!
+    }.flow
+
     override suspend fun getMovieDetails(id: Int): NetworkResult<MovieDetails> {
         return safecall( suspend { movieAPI.getMovie(id) }) {
             MovieDetailsMapping.instance.getMovieDetails(it)
         }
+    }
+
+    override fun reload() {
+        movieDS?.invalidate()
     }
 
     private suspend fun <T,R> safecall(call: suspend ()->Response<T>, mapping: (T) -> R): NetworkResult<R> {
@@ -35,12 +48,6 @@ class MovieRepoImpl(private val movieAPI: MovieAPI, private val context: Context
             NetworkResult.Error(e)
         }
     }
-
-    override fun getPopularList() = Pager(
-        PagingConfig(20)
-    ) {
-        MovieNetworkDataSource(movieAPI)
-    }.flow
 
 
 }

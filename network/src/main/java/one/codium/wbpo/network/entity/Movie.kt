@@ -11,7 +11,7 @@ data class Movie(
     val title: String,
     val voteAverage: Double,
     val voteCount: Int,
-    val favorite: Boolean = false,
+    var isFavorite: Boolean = false,
 )
 
 fun Movie.getImagePath() = "https://image.tmdb.org/t/p/w300$posterPath"

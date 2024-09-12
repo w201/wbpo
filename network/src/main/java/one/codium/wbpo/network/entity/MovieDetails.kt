@@ -10,7 +10,8 @@ data class MovieDetails(
     val voteAverage: Double,
     val voteCount: Int,
     val originCountry: List<String>?,
-    val revenue: Int?
+    val revenue: Int?,
+    var isFavorite: Boolean = false
 
 ) {
     val image = "https://image.tmdb.org/t/p/w500/$imagePath"

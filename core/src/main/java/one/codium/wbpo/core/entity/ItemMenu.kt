@@ -1,8 +1,9 @@
 package one.codium.wbpo.core.entity
 
+import androidx.annotation.Keep
 import androidx.compose.runtime.Composable
 
 data class ItemMenu(
-    val icon: @Composable ()-> Unit,
-    val id: String
+    val id: String,
+    val icon: @Composable ()-> Unit
 )

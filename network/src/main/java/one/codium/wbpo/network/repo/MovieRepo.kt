@@ -10,5 +10,6 @@ interface MovieRepo {
 
     fun getPopularList(): Flow<PagingData<Movie>>
     suspend fun getMovieDetails(id: Int): NetworkResult<MovieDetails>
+    fun reload()
 
 }

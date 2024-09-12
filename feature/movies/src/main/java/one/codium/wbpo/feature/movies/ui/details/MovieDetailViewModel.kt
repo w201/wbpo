@@ -1,15 +1,11 @@
 package one.codium.wbpo.feature.movies.ui.details
 
-import android.app.Application
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.*
-import androidx.lifecycle.ViewModelProvider.*
-import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
-import androidx.lifecycle.viewmodel.initializer
-import androidx.lifecycle.viewmodel.viewModelFactory
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import one.codium.wbpo.core.repo.fav.FavRepo
 import one.codium.wbpo.network.NetworkResult
 import one.codium.wbpo.network.entity.MovieDetails
 import one.codium.wbpo.network.repo.MovieRepo
@@ -18,18 +14,21 @@ import javax.inject.Inject
 @HiltViewModel
 class MovieDetailViewModel @Inject constructor(
     private val movieRepo: MovieRepo,
-    private val savedStateHandle: SavedStateHandle
+    private val savedStateHandle: SavedStateHandle,
+    private val favRepo: FavRepo
 ) : ViewModel() {
+
     private val _uiState = mutableStateOf(MovieDetailState(true))
     val uiState: State<MovieDetailState> = _uiState
 
+    private val movieId = savedStateHandle.get<Int>("id")
+
     init {
         viewModelScope.launch {
-            val movieId = savedStateHandle.get<Int>("id")
             if (movieId != null) {
                 when (val response = movieRepo.getMovieDetails(movieId)) {
                     is NetworkResult.Success -> {
-                        _uiState.value = MovieDetailState(movie = response.data)
+                        _uiState.value = MovieDetailState(movie = response.data.copy(isFavorite = favRepo.isFav(movieId)))
                     }
 
                     is NetworkResult.Error -> {
@@ -41,6 +40,15 @@ class MovieDetailViewModel @Inject constructor(
             }
         }
     }
+
+    fun toggleFav() {
+        movieId?.let {
+            favRepo.toggleFav(it)
+            _uiState.value = _uiState.value.copy(movie = _uiState.value.movie?.copy(isFavorite = favRepo.isFav(it)))
+            movieRepo.reload()
+        }
+    }
+
 }
 
 data class MovieDetailState(

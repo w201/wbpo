@@ -5,12 +5,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Star
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -20,31 +16,30 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemKey
 import coil.compose.AsyncImage
 import one.codium.wbpo.feature.movies.ui.widgets.BasicMovieInfo
+import one.codium.wbpo.feature.movies.ui.widgets.Favorite
 import one.codium.wbpo.network.entity.Movie
 import one.codium.wbpo.network.entity.getImagePath
 
 @Composable
 fun MovieListScreen(
     viewModel: MovieListViewModel = hiltViewModel(),
-    actions: (List<ItemMenu>) -> Unit,
     onMovieDetailsClick: (Int) -> Unit
 ) {
-
     Box(modifier = Modifier.fillMaxSize()) {
         val items = viewModel.movieFlow.collectAsLazyPagingItems()
         if (items.loadState.append is LoadState.Error){
             ShowError(items.loadState.append as LoadState.Error)
         }
-        MovieList(items) {
-            onMovieDetailsClick.invoke(it.id)
+        MovieList(items, { onMovieDetailsClick.invoke(it.id) }) {
+            viewModel.toggleFav(it)
         }
     }
 }
@@ -55,12 +50,12 @@ private fun ShowError(error: LoadState.Error) {
 }
 
 @Composable
-fun MovieList(movies: LazyPagingItems<Movie>, onMovieClick: (Movie) -> Unit) {
+fun MovieList(movies: LazyPagingItems<Movie>, onMovieClick: (Movie) -> Unit, onFavoriteClick: (Movie) -> Unit) {
     LazyColumn(contentPadding = PaddingValues(4.dp)) {
         items(movies.itemCount, movies.itemKey { it.id }) { index ->
             val movie = movies[index]
             if (movie != null) {
-                MovieItem(movie) {onMovieClick(movie)}
+                MovieItem(movie, {onMovieClick(movie)}, {onFavoriteClick(movie)})
             } else {
                 CircularProgressIndicator()
             }
@@ -70,7 +65,7 @@ fun MovieList(movies: LazyPagingItems<Movie>, onMovieClick: (Movie) -> Unit) {
 }
 
 @Composable
-fun MovieItem(movie: Movie, onMovieClick: (Movie) -> Unit ) {
+fun MovieItem(movie: Movie, onMovieClick: (Movie) -> Unit, onFavoriteClick: (Movie) -> Unit ) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -84,13 +79,19 @@ fun MovieItem(movie: Movie, onMovieClick: (Movie) -> Unit ) {
             contentDescription = movie.title
         )
         Column(modifier = Modifier.fillMaxWidth().padding(horizontal = 4.dp)) {
-            Text(
-                text = movie.title,
-                color = MaterialTheme.colorScheme.onBackground,
-                maxLines = 1,
-                fontWeight = FontWeight.Bold,
-                overflow = TextOverflow.Ellipsis
-            )
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    text = movie.title,
+                    color = MaterialTheme.colorScheme.onBackground,
+                    maxLines = 1,
+                    fontWeight = FontWeight.Bold,
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier.weight(1f)
+                )
+                Favorite(Modifier.size(16.dp), movie.isFavorite) {
+                    onFavoriteClick(movie)
+                }
+            }
             BasicMovieInfo(movie.releaseDate, movie.voteAverage, movie.voteCount)
             Text(
                 text = movie.overview,
@@ -119,6 +120,7 @@ fun MovieItemPreview() {
             "Some long title for movie or else",
             3.4,
             123
-        )
+        ),
+        {}
     ){}
 }
