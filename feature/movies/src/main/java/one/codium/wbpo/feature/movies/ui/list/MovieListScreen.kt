@@ -5,7 +5,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -17,16 +16,16 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemKey
 import coil.compose.AsyncImage
+import one.codium.wbpo.core.entity.Movie
+import one.codium.wbpo.core.entity.getImagePath
+import one.codium.wbpo.feature.movies.R
 import one.codium.wbpo.feature.movies.ui.widgets.BasicMovieInfo
 import one.codium.wbpo.feature.movies.ui.widgets.Favorite
-import one.codium.wbpo.network.entity.Movie
-import one.codium.wbpo.network.entity.getImagePath
 
 @Composable
 fun MovieListScreen(
@@ -40,6 +39,9 @@ fun MovieListScreen(
         }
         MovieList(items, { onMovieDetailsClick.invoke(it.id) }) {
             viewModel.toggleFav(it)
+        }
+        viewModel.offlineNotification?.value?.consume()?.let { notification ->
+            if (notification) Toast.makeText(LocalContext.current, R.string.error_inOffline, Toast.LENGTH_SHORT).show()
         }
     }
 }

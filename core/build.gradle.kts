@@ -4,6 +4,8 @@ plugins {
     alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.kapt)
+    alias(libs.plugins.room)
 }
 
 android {
@@ -26,6 +28,9 @@ android {
     buildFeatures {
         compose = true
     }
+    room {
+        schemaDirectory("$projectDir/schemas")
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -36,13 +41,22 @@ android {
 }
 
 dependencies {
+    implementation(project(":network"))
 
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
 
     implementation(libs.gson)
 
+    implementation(libs.mapStruct)
+    kapt(libs.mapStruct.processor)
+
     implementation(libs.androidx.runtime.android)
+    implementation(libs.room)
+    implementation(libs.room.ktx)
+    ksp(libs.room.annotation)
+
+    implementation(libs.paging)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

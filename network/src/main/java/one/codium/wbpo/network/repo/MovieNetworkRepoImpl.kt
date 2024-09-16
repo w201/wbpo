@@ -1,36 +1,23 @@
 package one.codium.wbpo.network.repo
 
 import android.content.Context
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
 import one.codium.wbpo.network.MovieAPI
 import one.codium.wbpo.network.NetworkResult
-import one.codium.wbpo.network.dto.movie_details.MovieDetailsMapping
-import one.codium.wbpo.network.entity.MovieDetails
+import one.codium.wbpo.network.dto.movie.MovieListDTO
+import one.codium.wbpo.network.dto.movie_details.MovieDetailsDTO
 import retrofit2.Response
 
-class MovieRepoImpl(
+internal class MovieNetworkRepoImpl(
     private val movieAPI: MovieAPI,
     private val context: Context
-) : MovieRepo {
+) : MovieNetworkRepo {
 
-   private var movieDS: MovieNetworkDataSource? = null
-
-    override fun getPopularList() = Pager(
-        PagingConfig(20)
-    ) {
-        movieDS = MovieNetworkDataSource(movieAPI)
-        movieDS!!
-    }.flow
-
-    override suspend fun getMovieDetails(id: Int): NetworkResult<MovieDetails> {
-        return safecall( suspend { movieAPI.getMovie(id) }) {
-            MovieDetailsMapping.instance.getMovieDetails(it)
-        }
+    override suspend fun getMovieDetails(id: Int): NetworkResult<MovieDetailsDTO> {
+        return safecall( suspend { movieAPI.getMovie(id) }) { it }
     }
 
-    override fun reload() {
-        movieDS?.invalidate()
+    override suspend fun getMovieByPage(page: Int): NetworkResult<MovieListDTO> {
+        return safecall({movieAPI.getPopularMovies(page)}, {it})
     }
 
     private suspend fun <T,R> safecall(call: suspend ()->Response<T>, mapping: (T) -> R): NetworkResult<R> {

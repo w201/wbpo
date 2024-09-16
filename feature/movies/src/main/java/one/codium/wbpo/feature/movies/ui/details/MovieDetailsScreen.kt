@@ -19,7 +19,7 @@ import one.codium.wbpo.core.entity.ItemMenu
 import one.codium.wbpo.feature.movies.R
 import one.codium.wbpo.feature.movies.ui.widgets.BasicMovieInfo
 import one.codium.wbpo.feature.movies.ui.widgets.Favorite
-import one.codium.wbpo.network.entity.MovieDetails
+import one.codium.wbpo.core.entity.MovieDetails
 
 @Composable
 fun MovieDetailsScreen(

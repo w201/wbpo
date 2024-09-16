@@ -11,8 +11,8 @@ import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import one.codium.wbpo.network.BuildConfig
 import one.codium.wbpo.network.MovieAPI
-import one.codium.wbpo.network.repo.MovieRepo
-import one.codium.wbpo.network.repo.MovieRepoImpl
+import one.codium.wbpo.network.repo.MovieNetworkRepo
+import one.codium.wbpo.network.repo.MovieNetworkRepoImpl
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
@@ -24,8 +24,8 @@ object NetworkModule {
 
      @Provides
      @Singleton
-     fun provideNetworkRepo(movieAPI: MovieAPI, @ApplicationContext context: Context): MovieRepo {
-         return MovieRepoImpl(movieAPI, context)
+     fun provideNetworkRepo(movieAPI: MovieAPI, @ApplicationContext context: Context): MovieNetworkRepo {
+         return MovieNetworkRepoImpl(movieAPI, context)
      }
 
     @Provides

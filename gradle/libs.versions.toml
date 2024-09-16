@@ -46,16 +46,17 @@ androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-com
 
 room = { group = "androidx.room", name = "room-runtime", version.ref = "roomVersion" }
 room-annotation = { group = "androidx.room", name = "room-compiler", version.ref = "roomVersion" }
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "roomVersion" }
 
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
-gson-converter = {group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit"}
+gson-converter = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
 gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 
-mapStruct = {group = "org.mapstruct", name = "mapstruct", version.ref = "mapStruct"}
-mapStruct-processor = { group = "org.mapstruct", name = "mapstruct-processor", version.ref = "mapStruct"}
+mapStruct = { group = "org.mapstruct", name = "mapstruct", version.ref = "mapStruct" }
+mapStruct-processor = { group = "org.mapstruct", name = "mapstruct-processor", version.ref = "mapStruct" }
 
-chuker-debug = {group = "com.github.chuckerteam.chucker",name = "library", version.ref = "chucker"}
-chuker-release = {group = "com.github.chuckerteam.chucker",name = "library-no-op", version.ref = "chucker"}
+chuker-debug = { group = "com.github.chuckerteam.chucker", name = "library", version.ref = "chucker" }
+chuker-release = { group = "com.github.chuckerteam.chucker", name = "library-no-op", version.ref = "chucker" }
 
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
@@ -63,13 +64,13 @@ hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref
 hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
 androidx-runtime-android = { group = "androidx.compose.runtime", name = "runtime-android", version.ref = "runtimeAndroid" }
 
-coil = {group = "io.coil-kt", name = "coil", version.ref = "coil"}
-coil-compose = {group = "io.coil-kt", name = "coil-compose", version.ref = "coil"}
+coil = { group = "io.coil-kt", name = "coil", version.ref = "coil" }
+coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 
-paging = {group = "androidx.paging", name = "paging-runtime", version.ref = "pagination"}
-paging-compose = {group = "androidx.paging", name = "paging-compose", version.ref = "pagination"}
-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose"}
-kotlin-serialization = { group = "org.jetbrains.kotlinx",name ="kotlinx-serialization-core", version.ref="kotlinSerialization"}
+paging = { group = "androidx.paging", name = "paging-runtime", version.ref = "pagination" }
+paging-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "pagination" }
+navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
+kotlin-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-core", version.ref = "kotlinSerialization" }
 androidx-foundation-android = { group = "androidx.compose.foundation", name = "foundation-android", version.ref = "foundationAndroid" }
 
 [plugins]
@@ -77,8 +78,9 @@ android-application = { id = "com.android.application", version.ref = "agp" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-serialization = {id = "org.jetbrains.kotlin.plugin.serialization", version.ref="kotlin"}
+serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
-kapt = {id = "org.jetbrains.kotlin.kapt", version.ref = "kapt"}
+kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kapt" }
+room = {id = "androidx.room", version.ref="roomVersion"}
 

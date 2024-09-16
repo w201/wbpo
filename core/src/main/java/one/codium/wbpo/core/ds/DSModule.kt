@@ -7,6 +7,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import one.codium.wbpo.core.ds.fav.FavDS
 import one.codium.wbpo.core.ds.fav.FavDSImpl
+import one.codium.wbpo.core.ds.movie.MovieDataSource
 import one.codium.wbpo.core.ds.settings.SettingsDataSource
 import one.codium.wbpo.core.ds.settings.SettingsDataSourceImpl
 import javax.inject.Singleton

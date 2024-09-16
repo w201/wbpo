@@ -1,4 +1,4 @@
-package one.codium.wbpo.network.entity
+package one.codium.wbpo.core.entity
 
 data class MovieDetails(
     val id: Long,

@@ -2,4 +2,5 @@
 <resources>
     <string name="movieDetails.budget">Budget: $s</string>
     <string name="movieDetails.revenue">Revenue: $s</string>
+    <string name="error_inOffline">Data from offline</string>
 </resources>

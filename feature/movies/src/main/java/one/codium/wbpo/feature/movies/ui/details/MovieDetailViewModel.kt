@@ -7,8 +7,9 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import one.codium.wbpo.core.repo.fav.FavRepo
 import one.codium.wbpo.network.NetworkResult
-import one.codium.wbpo.network.entity.MovieDetails
-import one.codium.wbpo.network.repo.MovieRepo
+import one.codium.wbpo.core.entity.MovieDetails
+import one.codium.wbpo.core.repo.movie.MovieRepo
+import one.codium.wbpo.network.repo.MovieNetworkRepo
 import javax.inject.Inject
 
 @HiltViewModel
