@@ -17,7 +17,7 @@ import one.codium.wbpo.core.db.entity.converters.CountryConverter
     version = 1
 )
 @TypeConverters(CountryConverter::class)
-abstract class MovieDB : RoomDatabase() {
+internal abstract class MovieDB : RoomDatabase() {
     abstract fun provideDao(): MovieDao
     abstract fun provideMovieDetailsDao(): MovieDetailsDao
 }

@@ -4,7 +4,7 @@ import androidx.room.*
 import one.codium.wbpo.core.db.entity.converters.CountryConverter
 
 @Entity(tableName = "movie_details")
-data class MovieDetailsEntity(
+internal data class MovieDetailsEntity(
     @PrimaryKey
     val id: Long,
     val title: String,

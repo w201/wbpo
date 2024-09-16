@@ -8,7 +8,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object UsecaseModule {
+internal object UsecaseModule {
 
     @Provides
     @Singleton

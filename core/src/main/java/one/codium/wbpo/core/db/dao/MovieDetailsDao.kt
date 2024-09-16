@@ -5,7 +5,7 @@ import one.codium.wbpo.core.db.entity.MovieDetailsEntity
 import one.codium.wbpo.core.db.entity.MovieEntity
 
 @Dao
-interface MovieDetailsDao {
+internal interface MovieDetailsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(movies: MovieDetailsEntity)
 

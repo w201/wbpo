@@ -4,7 +4,7 @@ import one.codium.wbpo.core.ds.settings.SettingsDataSource
 import one.codium.wbpo.core.entity.ThemeMode
 import javax.inject.Inject
 
-class SettingsRepoImpl @Inject constructor(
+internal class SettingsRepoImpl @Inject constructor(
     private val settingsDataSource: SettingsDataSource
 ): SettingsRepo {
     private val themeKey = "themeMode"

@@ -13,7 +13,7 @@ import one.codium.wbpo.network.NetworkResult
 import one.codium.wbpo.network.repo.MovieNetworkRepo
 import javax.inject.Inject
 
-class MovieRepoImpl @Inject constructor(
+internal class MovieRepoImpl @Inject constructor(
     private val db: MovieDB,
     private val movieNetworkRepo: MovieNetworkRepo
 ) : MovieRepo {
@@ -58,4 +58,5 @@ class MovieRepoImpl @Inject constructor(
     override fun reload() {
         movieDS?.invalidate()
     }
+
 }

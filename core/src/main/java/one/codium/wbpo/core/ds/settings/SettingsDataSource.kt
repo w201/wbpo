@@ -1,6 +1,6 @@
 package one.codium.wbpo.core.ds.settings
 
-interface SettingsDataSource {
+internal interface SettingsDataSource {
     fun setValue(key: String, value: String)
     fun getValue(key: String): String?
 }

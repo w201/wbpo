@@ -7,7 +7,7 @@ import org.mapstruct.*
 import org.mapstruct.factory.Mappers
 
 @Mapper
-interface MovieMapping {
+internal interface MovieMapping {
 
     fun getMovies(dtoList: List<MovieDTO>): List<Movie>
 

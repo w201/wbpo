@@ -1,6 +1,5 @@
 package one.codium.wbpo.core.ds.movie
 
-import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import androidx.room.withTransaction
@@ -20,12 +19,11 @@ internal class MovieDataSource(
 
     private val movieDao: MovieDao = db.provideDao()
 
-    override fun getRefreshKey(state: PagingState<Int, Movie>): Int? {
-        val ret = state.anchorPosition?.let { anchorPosition ->
+    override fun getRefreshKey(state: PagingState<Int, Movie>): Int? =
+        state.anchorPosition?.let { anchorPosition ->
             state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)
         }
-        return ret
-    }
+
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Movie> {
         val page = params.key ?: 1
@@ -59,11 +57,10 @@ internal class MovieDataSource(
 
     private suspend fun saveToDB(results: List<MovieDTO>, page: Int) {
         db.withTransaction {
-            Log.v("w201", "page: $page")
             movieDao.deleteByPage(page)
-            val list = MovieMapping.instance.toMovieEntity(results, page)//.map { it.copy(page = page) }
-            Log.v("w201", "saveToDB: $list")
+            val list = MovieMapping.instance.toMovieEntity(results, page)
             movieDao.insertAll(list)
         }
     }
+
 }

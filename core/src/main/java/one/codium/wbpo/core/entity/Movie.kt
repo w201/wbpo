@@ -1,7 +1,5 @@
 package one.codium.wbpo.core.entity
 
-import androidx.room.Ignore
-
 data class Movie(
     val backdropPath: String?,
     val id: Int,

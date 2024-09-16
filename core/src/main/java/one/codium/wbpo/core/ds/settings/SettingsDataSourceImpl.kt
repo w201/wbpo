@@ -4,7 +4,7 @@ import android.content.SharedPreferences
 import androidx.core.content.edit
 import javax.inject.Inject
 
-class SettingsDataSourceImpl @Inject constructor(
+internal class SettingsDataSourceImpl @Inject constructor(
     private val prefs: SharedPreferences
 ) : SettingsDataSource {
     override fun setValue(key: String, value: String) {

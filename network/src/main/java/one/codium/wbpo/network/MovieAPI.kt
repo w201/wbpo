@@ -7,7 +7,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface MovieAPI {
+internal interface MovieAPI {
 
     @GET("3/movie/popular?language=en-US&sort_by=popularity.desc")
     suspend fun getPopularMovies(@Query("page") page: Int): Response<MovieListDTO>

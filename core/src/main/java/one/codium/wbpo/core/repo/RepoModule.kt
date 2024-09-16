@@ -13,13 +13,18 @@ import one.codium.wbpo.core.repo.movie.MovieRepo
 import one.codium.wbpo.core.repo.movie.MovieRepoImpl
 import one.codium.wbpo.core.repo.settings.SettingsRepo
 import one.codium.wbpo.core.repo.settings.SettingsRepoImpl
+import one.codium.wbpo.network.di.NetworkModule
 import one.codium.wbpo.network.repo.MovieNetworkRepo
+import javax.inject.Inject
 import javax.inject.Singleton
 
+@Module(includes = [InternalRepoModule::class])
+@InstallIn(SingletonComponent::class)
+interface RepoModule
 
 @Module
 @InstallIn(SingletonComponent::class)
-object RepoModule {
+internal object InternalRepoModule {
 
     @Provides
     @Singleton

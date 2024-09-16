@@ -4,7 +4,7 @@ import androidx.room.*
 import one.codium.wbpo.core.db.entity.MovieEntity
 
 @Dao
-interface MovieDao {
+internal interface MovieDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(movies: List<MovieEntity>)
 

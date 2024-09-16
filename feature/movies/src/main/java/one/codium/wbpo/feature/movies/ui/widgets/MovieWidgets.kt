@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun BasicMovieInfo(releaseDate: String, voteAverage: Double, voteCount: Int) {
+internal fun BasicMovieInfo(releaseDate: String, voteAverage: Double, voteCount: Int) {
     Row(verticalAlignment = Alignment.CenterVertically) {
         Text(
             text = releaseDate,

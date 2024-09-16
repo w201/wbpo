@@ -4,7 +4,7 @@ import android.content.Context
 import android.os.Build
 import one.codium.wbpo.feature.info.entity.SystemInfo
 
-class InfoUsecaseImpl : InfoUsecase {
+internal class InfoUsecaseImpl : InfoUsecase {
 
     override fun invoke() = SystemInfo(
         Build.MANUFACTURER,
