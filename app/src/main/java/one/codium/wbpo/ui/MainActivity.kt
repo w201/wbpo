@@ -25,8 +25,6 @@ import one.codium.wbpo.core.entity.ItemMenu
 import one.codium.wbpo.core.entity.ThemeMode
 import one.codium.wbpo.entity.NavigationItem
 import one.codium.wbpo.navigation.MovieNavigation
-import one.codium.wbpo.navigation.route.MovieListRoute
-import one.codium.wbpo.navigation.route.SettingsRoute
 import one.codium.wbpo.ui.theme.WBPOTheme
 
 @AndroidEntryPoint
@@ -41,7 +39,8 @@ class MainActivity : ComponentActivity() {
             val themeMode = remember {
                 mutableStateOf(viewModel.uiState.value.themeMode)
             }
-            val isDarkMode = (themeMode.value == ThemeMode.DARK) || isSystemInDarkTheme()
+            val isDarkMode =
+                (themeMode.value == ThemeMode.DARK) || (themeMode.value == ThemeMode.SYSTEM && isSystemInDarkTheme())
 
             WBPOTheme(isDarkMode) {
                 val navController = rememberNavController()

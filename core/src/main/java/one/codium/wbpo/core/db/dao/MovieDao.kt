@@ -14,6 +14,9 @@ internal interface MovieDao {
     @Query("DELETE FROM movie WHERE page = :page")
     suspend fun deleteByPage(page: Int)
 
+    @Query("DELETE from movie WHERE id in (:list)")
+    suspend fun deleteByIds(list: String)
+
     @Query("DELETE FROM movie")
     suspend fun clearAll()
 }

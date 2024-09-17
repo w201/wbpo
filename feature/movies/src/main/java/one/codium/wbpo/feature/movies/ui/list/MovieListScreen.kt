@@ -80,7 +80,7 @@ fun MovieItem(movie: Movie, onMovieClick: (Movie) -> Unit, onFavoriteClick: (Mov
             model = movie.getImagePath(),
             contentDescription = movie.title
         )
-        Column(modifier = Modifier.fillMaxWidth().padding(horizontal = 4.dp)) {
+        Column(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
                     text = movie.title,

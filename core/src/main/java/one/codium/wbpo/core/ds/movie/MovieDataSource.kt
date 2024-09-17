@@ -58,6 +58,8 @@ internal class MovieDataSource(
     private suspend fun saveToDB(results: List<MovieDTO>, page: Int) {
         db.withTransaction {
             movieDao.deleteByPage(page)
+            val ids = results.map { it.id }.joinToString { it.toString() }
+            movieDao.deleteByIds(ids)
             val list = MovieMapping.instance.toMovieEntity(results, page)
             movieDao.insertAll(list)
         }
